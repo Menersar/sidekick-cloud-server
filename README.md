@@ -1,6 +1,8 @@
 # cloud-server
 
-A cloud data server for Scratch 3. Used by [forkphorus](https://forkphorus.github.io/) and [TurboWarp](https://turbowarp.org/).
+<!-- !!! CHANGE !!! -->
+<!-- A cloud data server for Scratch 3. Used by [forkphorus](https://forkphorus.github.io/) and [TurboWarp](https://turbowarp.org/) and [Sidekick](https://github.com/Mixality/Sidekick/). -->
+A cloud data server for Scratch 3. Used by [forkphorus](https://forkphorus.github.io/) and [TurboWarp](https://turbowarp.org/) and [Sidekick](https://github.com/Menersar/Sidekick/).
 
 It uses a protocol very similar to Scratch 3's cloud variable protocol. See doc/protocol.md for further details.
 
@@ -23,9 +25,9 @@ npm start
 
 By default the server is listening on ws://localhost:9080/. To change the port or enable wss://, read below.
 
-To use a local cloud variable server in forkphorus, you can use the `chost` URL parameter, for example: https://forkphorus.github.io/?chost=ws://localhost:9080/
+To use a local cloud variable server in forkphorus, you can use the `chost` URL parameter, for example: <https://forkphorus.github.io/?chost=ws://localhost:9080/>
 
-You can do a similar thing in TurboWarp with the `cloud_host` URL parameter: https://turbowarp.org/?cloud_host=ws://localhost:9080/
+You can do a similar thing in TurboWarp with the `cloud_host` URL parameter: <https://turbowarp.org/?cloud_host=ws://localhost:9080/>
 
 ## Configuration
 
@@ -43,9 +45,9 @@ If you use a reverse proxy, set the `trustProxy` property (or `TRUST_PROXY` envi
 
 Set `anonymizeAddresses` to `true` if you want IP addresses to be not be logged.
 
-Set `perMessageDeflate` to an object to enable "permessage-deflate", which uses compression to reduce the bandwidth of data transfers. This can lead to poor performance and catastrophic memory fragmentation on Linux (https://github.com/nodejs/node/issues/8871). See here for options: https://github.com/websockets/ws/blob/master/doc/ws.md#new-websocketserveroptions-callback (look for `perMessageDeflate`)
+Set `perMessageDeflate` to an object to enable "permessage-deflate", which uses compression to reduce the bandwidth of data transfers. This can lead to poor performance and catastrophic memory fragmentation on Linux (<https://github.com/nodejs/node/issues/8871>). See here for options: <https://github.com/websockets/ws/blob/master/doc/ws.md#new-websocketserveroptions-callback> (look for `perMessageDeflate`)
 
-You can configure logging with the `logging` property of src/config.js. By default cloud-server logs to stdout and to files in the `logs` folder. stdout logging can be disabled by setting `logging.console` to false. File logging is configured with `logging.rotation`, see here for options: https://github.com/winstonjs/winston-daily-rotate-file#options. Set to false to disable.
+You can configure logging with the `logging` property of src/config.js. By default cloud-server logs to stdout and to files in the `logs` folder. stdout logging can be disabled by setting `logging.console` to false. File logging is configured with `logging.rotation`, see here for options: <https://github.com/winstonjs/winston-daily-rotate-file#options>. Set to false to disable.
 
 ### Production setup
 

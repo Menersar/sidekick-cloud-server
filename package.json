@@ -1,5 +1,5 @@
 {
-  "name": "forkphorus-cloud-server",
+  "name": "sidekick-cloud-server",
   "version": "0.1.0",
   "description": "",
   "main": "src/index.js",
@@ -29,6 +29,5 @@
   "optionalDependencies": {
     "bufferutil": "^4.0.7",
     "utf-8-validate": "^6.0.3"
-  },
-  "private": true
+  }
 }
