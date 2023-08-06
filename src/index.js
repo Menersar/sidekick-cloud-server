@@ -1,3 +1,6 @@
+// const { Socket } = require('net').Socket;#
+// const Socket = require('node:net').Socket;
+
 const http = require('http');
 const fs = require('fs');
 const finalhandler = require('finalhandler');
@@ -19,13 +22,18 @@ const server = http.createServer(function handler(req, res) {
 });
 
 server.on('upgrade', function upgrade(request, socket, head) {
+    // let socket-duplex = socket.Duplex;
   // Forward these requests to the WebSocket server.
+//   wss.handleUpgrade(request, socket, head, function done(ws) {
+    
+  // @ts-ignore
   wss.handleUpgrade(request, socket, head, function done(ws) {
     wss.emit('connection', ws, request);
   });
 });
 
 server.on('close', function() {
+  // !!! 'TODO'? ???
   // TODO: this code never seems to actually run
   logger.info('Server closing');
   wss.close();
