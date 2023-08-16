@@ -1,45 +1,67 @@
-<!DOCTYPE html>
-<html>
+<!--
+Example client that can run in your browser.
 
-<head>
-    <title>Cloud Data Server</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body {
-            font-family: "Helvetica Neue", Helvetica, sans-serif;
+Open this page, then open your browser console (usually F12 or Right Click -> Inspect Element)
+
+Use setVariable("☁ variable", "1") to set variables.
+Use getVariable("☁ variable") to read variables.
+-->
+
+<script>
+    // var ws = new WebSocket("wss://clouddata.scratch.mit.edu");
+    var ws = new WebSocket("wss://menersar.github.io/Sidekick/clouddata");
+    var variables = {};
+
+    function setVariable(name, value) {
+        console.log(`Setting variable: ${name} = ${value}`);
+        variables[name] = value;
+        ws.send(JSON.stringify({
+            method: "set",
+            name,
+            value
+        }));
+    }
+
+    function getVariable(name) {
+        return variables[name];
+    }
+
+    ws.onopen = () => {
+        console.log("Performing handshake");
+
+        // Tell the server which project you want to connect to.
+        ws.send(JSON.stringify({
+            method: "handshake",
+            project_id: "1234567",
+            user: "ExampleUsername"
+        }));
+
+        // To set a variable:
+        // You must do this AFTER handshake
+        setVariable("☁ variable", "1");
+
+        // Use setInterval to constantly update a variable
+        setInterval(() => {
+            setVariable("☁ variable", Math.random());
+        }, 1000);
+    };
+
+    ws.onmessage = (event) => {
+        // Process updates from the server.
+        for (const message of event.data.split("\n")) {
+            const obj = JSON.parse(message);
+            if (obj.method === "set") {
+                variables[obj.name] = obj.value;
+                console.log(`Server set variable: ${obj.name} = ${obj.value}`);
+            }
         }
+    };
 
-        .label {
-            font-size: 9.45pt;
-            font-weight: bold;
-            color: #575757;
-            white-space: pre;
-        }
+    ws.onclose = () => {
+        console.log("Server closed connection");
+    };
 
-        .var {
-            display: inline-block;
-            background-color: #62ad44;
-            border-radius: 15px;
-            font-size: 8.1pt;
-            color: #f1f1f1;
-            font-weight: 500;
-            padding-top: 7px;
-            padding-bottom: 7px;
-            padding-left: 8px;
-            padding-right: 8px;
-            text-decoration: none;
-            white-space: pre;
-        }
-
-        .var.cloud::before {
-            content: '☁ ';
-        }
-    </style>
-</head>
-
-<body>
-    <h1 class="label">Cloud Data Server</h1>
-    <a href="https://github.com/Menersar/Sidekick/sidekick-cloud-server" class="var cloud">Source Code</a>
-</body>
-
-</html>
+    ws.onerror = () => {
+        console.log("Error!");
+    };
+</script>
