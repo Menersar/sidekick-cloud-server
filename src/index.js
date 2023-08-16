@@ -22,6 +22,7 @@ const server = http.createServer(function handler(req, res) {
 });
 
 server.on('upgrade', function upgrade(request, socket, head) {
+    // !!! WHY warum auskommentiert? ???
     // let socket-duplex = socket.Duplex;
   // Forward these requests to the WebSocket server.
 //   wss.handleUpgrade(request, socket, head, function done(ws) {

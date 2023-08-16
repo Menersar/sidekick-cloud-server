@@ -19,7 +19,7 @@
         "noFallthroughCasesInSwitch": true,
         "allowUnreachableCode": false,
         // !!! Keep 'forceConsistentCasingInFileNames' enabled? ???
-        "forceConsistentCasingInFileNames": true,
+        // "forceConsistentCasingInFileNames": true,
     },
     "exclude": [
         "doc/**"

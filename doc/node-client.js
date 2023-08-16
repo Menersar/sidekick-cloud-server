@@ -10,11 +10,8 @@ Use getVariable("☁ variable") to read variables.
 
 const WebSocket = require('ws');
 
-// !!! CHANGE !!!
 // const ws = new WebSocket("wss://clouddata.turbowarp.org");
-// const ws = new WebSocket("wss://mixality.github.io/Sidekick/clouddata");
-// const ws = new WebSocket("wss://menersar.github.io/Sidekick/clouddata");
-const ws = new WebSocket("wss://clouddata.scratch.mit.edu");
+const ws = new WebSocket("wss://menersar.github.io/Sidekick/clouddata");
 
 const variables = {};
 
